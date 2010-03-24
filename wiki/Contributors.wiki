@@ -3,5 +3,5 @@
 
   # Derek Barnett, Boston College
   # Gordon Assaf, CSHL
-  # Tomas Doktor, University of Southern Denmark
+  # Thomas Doktor, University of Southern Denmark
   # Royden Clark, University of Virginia
