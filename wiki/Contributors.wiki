@@ -1,4 +1,5 @@
 #summary Contributors of ideas and/or source code to the BEDTools project.
+#labels Featured
 
   # Derek Barnett, Boston College
   # Gordon Assaf, CSHL
