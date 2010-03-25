@@ -4,4 +4,5 @@
   # Continued integration of native BAM support.
   # Native support for "gzipped" BED and GFF files.
   # New tool: annotateBed.  Will allow one to compare one BED file to many others in a single command.
+  # Reduced memory consumption and increased speed.
   # Potential "drawing" tools for overlaps, etc.
