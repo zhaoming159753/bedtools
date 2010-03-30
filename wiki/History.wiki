@@ -1,10 +1,10 @@
 #summary BEDTools release history.
 
-*Version 2.6.1 (Mar-29-2010)*
+==Version 2.6.1 (Mar-29-2010)==
   # Fixed a careless command line parsing bug in coverageBed.
 
 
-*Version 2.6.0 (Mar-23-2010)*
+==Version 2.6.0 (Mar-23-2010)==
 *Specific improvements / additions to tools*
   # intersectBed
     * Added an option (-wo) that reports the number of overlapping bases for each intersection b/w A and B files.
@@ -37,11 +37,11 @@ chr1	10	20	C	chr1	25	35	D	-5
   # Fixed a minor bug in mergeBed when using the -nms option.
 
 
-*Version 2.5.4 (Mar-3-2010)*
+==Version 2.5.4 (Mar-3-2010)==
   # Fixed an insidious bug that caused malform BAM output from intersectBed and pairToBed.  The previous BAM files worked fine with samtools as BAM input, but when piped in as SAM, there was an extra tab that thwarted conversion from SAM back to BAM.  Many thanks to Ivan Gregoretti for reporting this bug.  I had never used the BAM output in this way and thus never caught the bug!
 
 
-*Version 2.5.3 (Feb-19-2010)*
+==Version 2.5.3 (Feb-19-2010)==
   # Fixed bug to "re-allow" track and "browser" lines.
   # Fixed bug in reporting BEDPE overlaps.
   # Fixed bug when using type "notboth" with BAM files in pairToBed.
