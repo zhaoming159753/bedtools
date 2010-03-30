@@ -8,22 +8,17 @@
 *Specific improvements / additions to tools*
   # intersectBed
     * Added an option (-wo) that reports the number of overlapping bases for each intersection b/w A and B files.
-
   # coverageBed
     * native BAM support
     * can now report a histogram (-hist) of coverage for each feature in B.  Useful for exome sequencing projects, for example.
     * faster
-
   # genomeCoverageBed
     * native BAM support
     * can now report coverage in BEDGRAPH format (-bg)
-
   # bamToBed
     * support for "blocked" BED (aka BED12) format.  This facilitates the creation of BED entries for "split" alignments (e.g. RNAseq or SV)
-
   # fastaFromBed
     * added the ability to extract sequences from a FASTA file according to the strand in the BED file.  That is, when "-" the extracted sequence is reverse complemented.
-
   # overlap
     * newly added tool for computing the overlap/distance between features on the same line. For example:
 {{{
