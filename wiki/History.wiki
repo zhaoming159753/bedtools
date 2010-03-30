@@ -1,0 +1,55 @@
+#summary BEDTools release history.
+
+*Version 2.6.1 (Mar-29-2010)*
+  # Fixed a careless command line parsing bug in coverageBed.
+
+
+*Version 2.6.0 (Mar-23-2010)*
+*Specific improvements / additions to tools*
+  # intersectBed
+    * Added an option (-wo) that reports the number of overlapping bases for each intersection b/w A and B files.
+
+  # coverageBed
+    * native BAM support
+    * can now report a histogram (-hist) of coverage for each feature in B.  Useful for exome sequencing projects, for example.
+    * faster
+
+  # genomeCoverageBed
+    * native BAM support
+    * can now report coverage in BEDGRAPH format (-bg)
+
+  # bamToBed
+    * support for "blocked" BED (aka BED12) format.  This facilitates the creation of BED entries for "split" alignments (e.g. RNAseq or SV)
+
+  # fastaFromBed
+    * added the ability to extract sequences from a FASTA file according to the strand in the BED file.  That is, when "-" the extracted sequence is reverse complemented.
+
+  # overlap
+    * newly added tool for computing the overlap/distance between features on the same line. For example:
+{{{
+$ cat test.out
+chr1	10	20	A	chr1	15	25	B
+chr1	10	20	C	chr1	25	35	D
+
+$ cat test.out | overlaps -i stdin -cols 2,3,6,7
+chr1	10	20	A	chr1	15	25	B	5
+chr1	10	20	C	chr1	25	35	D	-5
+}}}
+
+*Bug fixes*
+  # Fixed a bug in pairToBed when comparing paired-end BAM alignments to BED annotations and using the "notboth" option.
+  # Fixed an idiotic bug in intersectBed that occasionally caused segfaults when blank lines existed in BED files.
+  # Fixed a minor bug in mergeBed when using the -nms option.
+
+
+*Version 2.5.4 (Mar-3-2010)*
+  # Fixed an insidious bug that caused malform BAM output from intersectBed and pairToBed.  The previous BAM files worked fine with samtools as BAM input, but when piped in as SAM, there was an extra tab that thwarted conversion from SAM back to BAM.  Many thanks to Ivan Gregoretti for reporting this bug.  I had never used the BAM output in this way and thus never caught the bug!
+
+
+*Version 2.5.3 (Feb-19-2010)*
+  # Fixed bug to "re-allow" track and "browser" lines.
+  # Fixed bug in reporting BEDPE overlaps.
+  # Fixed bug when using type "notboth" with BAM files in pairToBed.
+  # When comparing BAM files to BED/GFF annotations with intersectBed or pairToBed, the _aligned_ sequence is used, rather than the _original_ sequence.
+  # Greatly increased the speed of pairToBed when using BAM alignments.
+  # Fixed a bug in bamToBed when reporting edit distance from certain aligners.
