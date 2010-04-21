@@ -6,3 +6,4 @@
   # New tool: annotateBed.  Will allow one to compare one BED file to many others in a single command.
   # Reduced memory consumption and increased speed.
   # Potential "drawing" tools for overlaps, etc.
+  # Multi-threading for processing BAM files.
