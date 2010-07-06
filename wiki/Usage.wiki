@@ -195,9 +195,86 @@ E.g. chr7  10000001        10000002        rs123464
 
 =groupBy=
 
+*Note* groupBy assumes the input data are sorted by the grouping columns you will use.  This is typically true for output from all BEDTools.
+
 Let's imagine we have three incredibly intriguing genetic variants that we are studying.
 
-{{{$ cat variants.bed
+{{{
+$ cat variants.bed
 chr21	9719758	9729320	variant1
 chr21	9729310	9757478	variant2
-chr21	9795589	9716615	variant3}}}
+chr21   9795588 9796685 variant3
+}}}
+
+We are interested in what repeats these variants overlap with in our genome, so we use intersectedBed.
+
+{{{
+$ intersectBed -a variants.bed -b repeats.bed -wa -wb > variantsToRepeats.bed
+$ cat variantsToRepeats.bed
+chr21	9719758	9729320	variant1	chr21	9719768	9721892	ALR/Alpha	1004	+
+chr21	9719758	9729320	variant1	chr21	9721905	9725582	ALR/Alpha	1010	+
+chr21	9719758	9729320	variant1	chr21	9725582	9725977	L1PA3	3288	+
+chr21	9719758	9729320	variant1	chr21	9726021	9729309	ALR/Alpha	1051	+
+chr21	9729310	9757478	variant2	chr21	9729320	9729809	L1PA3	3897	-
+chr21	9729310	9757478	variant2	chr21	9729809	9730866	L1P1	8367	+
+chr21	9729310	9757478	variant2	chr21	9730866	9734026	ALR/Alpha	1036	-
+chr21	9729310	9757478	variant2	chr21	9734037	9757471	ALR/Alpha	1182	-
+chr21	9795519	9796685	variant3	chr21	9795278	9795587	ALR/Alpha	979	-
+chr21	9795588	9796685	variant3	chr21	9795589	9795713	(GAATG)n	308	+
+chr21	9795588	9796685	variant3	chr21	9795736	9795894	(GAATG)n	683	+
+chr21	9795588	9796685	variant3	chr21	9795911	9796007	(GAATG)n	345	+
+chr21	9795588	9796685	variant3	chr21	9796028	9796187	(GAATG)n	756	+
+chr21	9795588	9796685	variant3	chr21	9796202	9796615	(GAATG)n	891	+
+chr21	9795588	9796685	variant3	chr21	9796637	9796824	(GAATG)n	621	+
+}}}
+
+We find that variant1 overlaps with 3 repeats, variant2 with 4 and variant3 with 6.  We can use groupBy to summarize the hits for each variant in several useful ways.
+
+First, let's find the min and max repeat score for each variant.  We do this by "grouping" on the variant coordinate columns (i.e. cols. 1,2 and 3) and ask for the min and max of the repeat score column (i.e. col. 9).
+
+{{{
+$ groupBy -i variantsToRepeats.bed -grp 1,2,3 -opCol 9 -op min
+chr21	9719758	9729320	1004
+chr21	9729310	9757478	1036
+chr21	9795588	9796685	308
+}}}
+
+We can also group on just the name column with similar effect.
+{{{
+$ groupBy -i variantsToRepeats.bed -grp 4 -opCol 9 -op min
+variant1	1004
+variant2	1036
+variant3	308
+}}}
+
+What about the *max* score?  Let's keep the coordinates and the name of the variants so that we stay in BED format.
+{{{
+$ groupBy -i variantsToRepeats.bed -grp 1,2,3,4 -opCol 9 -op max
+chr21	9719758	9729320	variant1	3288
+chr21	9729310	9757478	variant2	8367
+chr21	9795588	9796685	variant3	891
+}}}
+
+The mean score?
+{{{
+$ groupBy -i variantsToRepeats.bed -grp 1,2,3,4 -opCol 9 -op mean
+chr21	9719758	9729320	variant1	1588.25
+chr21	9729310	9757478	variant2	3620.5
+chr21	9795588	9796685	variant3	600.6667
+}}}
+
+The median score? You get the point...
+{{{
+$ groupBy -i variantsToRepeats.bed -grp 1,2,3,4 -opCol 9 -op median
+chr21	9719758	9729320	variant1	1030.5
+chr21	9729310	9757478	variant2	2539.5
+chr21	9795588	9796685	variant3	652
+}}}
+
+Now for something different.  What if we wanted all of the names of the repeats listed on the same line as the variants?  Use the collapse option.  This "denormalizes" things.
+{{{
+$ groupBy -i variantsToRepeats.bed -grp 1,2,3,4 -opCol 8 -op collapse
+chr21	9719758	9729320	variant1	ALR/Alpha,ALR/Alpha,L1PA3,ALR/Alpha,
+chr21	9729310	9757478	variant2	L1PA3,L1P1,ALR/Alpha,ALR/Alpha,
+chr21	9795588	9796685	variant3	(GAATG)n,(GAATG)n,(GAATG)n,(GAATG)n,(GAATG)n,(GAATG)n,
+}}}
