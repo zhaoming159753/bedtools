@@ -227,7 +227,7 @@ chr21	9795588	9796685	variant3	chr21	9796202	9796615	(GAATG)n	891	+
 chr21	9795588	9796685	variant3	chr21	9796637	9796824	(GAATG)n	621	+
 }}}
 
-We find that variant1 overlaps with 3 repeats, variant2 with 4 and variant3 with 6.  We can use groupBy to summarize the hits for each variant in several useful ways.
+We can see that variant1 overlaps with 3 repeats, variant2 with 4 and variant3 with 6.  We can use groupBy to summarize the hits for each variant in several useful ways.
 
 First, let's find the min and max repeat score for each variant.  We do this by "grouping" on the variant coordinate columns (i.e. cols. 1,2 and 3) and ask for the min and max of the repeat score column (i.e. col. 9).
 
