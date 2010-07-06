@@ -191,3 +191,13 @@ E.g. chr7  10000001        10000002        rs123464
 
   * Randomly place all discovered variants in the genome.  However, prevent them from being placed in know genome gaps and require that the variants be randomly placed on the same chromosome.
   {{{$ shuffleBed -i variants.bed -g hg18.genome -excl genome_gaps.bed -chrom}}}
+
+
+=groupBy=
+
+Let's imagine we have three incredibly intriguing genetic variants that we are studying.
+
+{{{$ cat variants.bed
+chr21	9719758	9729320	variant1
+chr21	9729310	9757478	variant2
+chr21	9795589	9716615	variant3}}}
