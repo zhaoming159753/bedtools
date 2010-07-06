@@ -270,6 +270,23 @@ chr21	9729310	9757478	variant2	2539.5
 chr21	9795588	9796685	variant3	652
 }}}
 
+
+What is the *most common* repeat name overlapped?
+{{{
+$ groupBy -i variantsToRepeats.bed -grp 1,2,3,4 -opCol 8 -op mode
+chr21	9719758	9729320	variant1	ALR/Alpha
+chr21	9729310	9757478	variant2	ALR/Alpha
+chr21	9795588	9796685	variant3	(GAATG)n
+}}}
+
+*Least common?*
+{{{
+$ groupBy -i variantsToRepeats.bed -grp 1,2,3,4 -opCol 8 -op antimode
+chr21	9719758	9729320	variant1	L1PA3
+chr21	9729310	9757478	variant2	L1P1
+chr21	9795588	9796685	variant3	(GAATG)n
+}}}
+
 Now for something different.  What if we wanted all of the names of the repeats listed on the same line as the variants?  Use the collapse option.  This "denormalizes" things.
 {{{
 $ groupBy -i variantsToRepeats.bed -grp 1,2,3,4 -opCol 8 -op collapse
