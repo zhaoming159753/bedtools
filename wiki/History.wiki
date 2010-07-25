@@ -3,8 +3,7 @@
 ==Version 2.8.3 (July-25-2010)==
   # Fixed bug that caused some GFF files to be misinterpreted as VCF.  This prevented the detection of overlaps.  
   # Added a new "-tag" option in bamToBed that allows one to choose the _numeric_ tag that will be used to populate the score field.  For example, one could populate the score field with the alignment score with "-tag AS".
-  # Updated the BamTools API. 
-
+  # Upgraded to the latest version of the BamTools API.
 
 
 ==Version 2.8.2 (July-18-2010)==
