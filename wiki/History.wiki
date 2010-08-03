@@ -1,4 +1,5 @@
 #summary BEDTools release history.
+#labels Featured
 
 ==Version 2.8.3 (July-25-2010)==
   # Fixed bug that caused some GFF files to be misinterpreted as VCF.  This prevented the detection of overlaps.  
