@@ -1,6 +1,37 @@
 #summary BEDTools release history.
 #labels Featured
 
+
+== Version 2.10.0 (September-21-2010) ==
+===New tools===
+  # annotateBed. Annotates one BED/VCF/GFF file with the coverage and number of overlaps observed from multiple other BED/VCF/GFF files. In this way, it allows one to ask to what degree one feature coincides with multiple other feature types with a single command. For example, the following will annotate the fraction of the variants in variants.bed that are covered by genes, conservaed regions and know variation, respectively.
+{{{
+$ annotateBed -i variants.bed -files genes.bed conserv.bed known_var.bed
+}}}
+
+This tool was suggested by Can Alkan and was motivated by the example source code that he kindly provided.
+
+===New features===
+  # New frequency operations (freqasc and freqdesc) added to groupBy.  These operations report a histogram of the frequency that each value is observed in a given column.
+  # Support for writing uncompressed bam with the -ubam option.
+  # Shorthand arguments for groupBy (-g eq. -grp, -c eq. -opCols, -o eq. -opCols).
+  # In addition, all BEDTools that require only one main input file (the -i file) will assume that input is coming from standard input if the -i parameter is ignored. For example, the following are equivalent:
+
+{{{
+$ cat snps.bed | sortBed –i stdin
+$ cat snps.bed | sortBed
+}}}
+
+As are these:
+{{{
+$ cat data.txt | groupBy -i stdin -g 1,2,3 -c 5 -o mean
+$ cat data.txt | groupBy -g 1,2,3 -c 5 -o mean
+}}}
+
+===Bug fixes===
+  # Increased the precision of the output from groupBy.
+
+
 ==Version 2.9.1 (August-16-2010)==
 
 ===New tools===
