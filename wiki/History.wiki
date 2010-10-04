@@ -1,6 +1,9 @@
 #summary BEDTools release history.
 #labels Featured
 
+== Version 2.10.1 (October-4-2010) ==
+===Bug fixes===
+  # Fixed a stupid debugging cout that affected the output of annotateBed. 
 
 == Version 2.10.0 (September-21-2010) ==
 ===New tools===
