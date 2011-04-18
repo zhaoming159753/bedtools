@@ -25,13 +25,13 @@ $ intersectBed -a snp.calls.bed -b dbSnp.bed -v | intersectBed -a stdin -b 1KG.b
 $ intersectBed -a features.bed -b windows.bed -f 1.0 | coverageBed -a stdin -b windows.bed > windows.bed.coverage 
 }}}
   # *Computing the coverage of BAM alignments on exons.*
-    * One can combine SAMtools with BEDtools to compute coverage directly from the BAM data by using bamToBed. 
+    * The basics...
 {{{
-$ bamToBed -i reads.bam | coverageBed -a stdin -b exons.bed > exons.bed.coverage 
+$ coverageBed -abam reads.bam -b exons.bed > exons.bed.coverage 
 }}}
     * Take it a step further and require that coverage be from properly-paired reads.
 {{{
-$ samtools view -bf 0x2 reads.bam | bamToBed -i stdin | coverageBed -a stdin -b exons.bed > exons.bed.proper.coverage 
+$ samtools view -uf 0x2 reads.bam | coverageBed -abam stdin -b exons.bed > exons.bed.proper.coverage 
 }}}
   # *Computing coverage separately for each strand.*
     * Use grep to only look at forward strand features (i.e. those that end in “+”). 
