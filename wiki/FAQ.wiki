@@ -6,9 +6,38 @@
 
 Below are common questions that are commonly asked by new BEDTools users. We have attempted to organize the content by subject.
 
+== Problems with running BEDTools commands ==
+  === How do I see the help for a given command? ===
+  All BEDTools commands have a "-h" option.  Additionally, some tools will provide the help menu if you just type the command line followed by enter.
+  {{{
+$ coverageBed -h
 
+Program: coverageBed (v2.11.2)
+Author:  Aaron Quinlan (aaronquinlan@gmail.com)
+Summary: Returns the depth and breadth of coverage of features from A
+	 on the intervals in B.
+
+Usage:   coverageBed [OPTIONS] -a <bed/gff/vcf> -b <bed/gff/vcf>
+
+Options: 
+	-abam	The A input file is in BAM format.
+
+	-s	Force strandedness.  That is, only include hits in A that
+		overlap B on the same strand.
+		- By default, hits are included without respect to strand.
+
+	-hist	Report a histogram of coverage for each feature in B
+		as well as a summary histogram for _all_ features in B.
+
+		Output (tab delimited) after each feature in B:
+		  1) depth
+		  2) # bases at depth
+		  3) size of B
+		  4) % of B at depth
+...
+}}}
 == Problems with file formats ==
-  === *What does zero-based, half-open mean?* ===
+  === What does zero-based, half-open mean? ===
   BEDTools users are sometimes confused by the way BED start and end coordinates are represented. BEDTools uses the UCSC Genome Browser’s internal database convention of making the start position 0-based and the end position 1-based: (http://genome.ucsc.edu/FAQ/FAQtracks#tracks1). In other words, BEDTools interprets the “start” column as being 1 basepair higher than what is represented in the file. For example, the following BED feature represents a single base on chromosome 1; namely, the 1st base.
 {{{
 $ cat first_base.bed 
