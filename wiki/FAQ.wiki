@@ -1,0 +1,19 @@
+#summary Frequently asked questions.
+#labels Featured
+= Introduction =
+
+Below are common questions that are commonly asked by new BEDTools users. We have attempted to organize the content by subject.
+
+
+== Problems with file formats ==
+  # *What does zero-based, half-open mean?*
+  # *Why must my input files be tab-delimited?
+
+  
+
+== Problems with output       == 
+
+
+
+
+== Converting among formats   == 
