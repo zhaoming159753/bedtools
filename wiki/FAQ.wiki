@@ -6,8 +6,15 @@ Below are common questions that are commonly asked by new BEDTools users. We hav
 
 
 == Problems with file formats ==
-  # *What does zero-based, half-open mean?*
-  # *Why must my input files be tab-delimited?
+  * *What does zero-based, half-open mean?*
+  BEDTools users are sometimes confused by the way BED start and end coordinates are represented. BEDTools uses the UCSC Genome Browser’s internal database convention of making the start position 0-based and the end position 1-based: (http://genome.ucsc.edu/FAQ/FAQtracks#tracks1). In other words, BEDTools interprets the “start” column as being 1 basepair higher than what is represented in the file. For example, the following BED feature represents a single base on chromosome 1; namely, the 1st base.
+{{{
+$ cat first_base.bed 
+chr1	0	1	i-am-the-first-position-on-chrom1
+}}}
+  Why, you might ask? The advantage of storing features this way is that it prevents lots of superfluous "+1" operations in the code when computing lengths, overlap, etc. These would be necessary were the coordinate system 1-based, inclusive. Thus, storing BED features this way reduces the computational burden.
+
+  * *Why must my input files be tab-delimited?
 
   
 
