@@ -73,3 +73,9 @@ chr1	0	1	i-am-the-first-position-on-chrom1
 
 
 == Converting among formats   == 
+
+<br>
+
+== Miscellaneous ==
+  === What happened to the "groupBy" tool? ===
+  In the interest of keeping the software we develop in logical collections, groupBy has been moved to the [https://github.com/arq5x/filo filo] project.
