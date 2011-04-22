@@ -14,8 +14,11 @@ chr1	0	1	i-am-the-first-position-on-chrom1
 }}}
   Why, you might ask? The advantage of storing features this way is that it prevents lots of superfluous "+1" operations in the code when computing lengths, overlap, etc. These would be necessary were the coordinate system 1-based, inclusive. Thus, storing BED features this way reduces the computational burden.
 
-  * *Why must my input files be tab-delimited?
-
+  * *Why must my input files be tab-delimited?*
+  While it is certainly possible to allow BED and other formats to be delimited by any form of whitespace, we have decided to require tab delimiters for three reasons:
+    # By requiring one delimiter type, the processing time is minimized. 
+    # Tab-delimited files are more amenable to other UNIX utilities.
+    # GFF files can contain spaces within attribute columns. This complicates the use of space-delimited files as spaces must therefore be treated specially depending on the context.
   
 
 == Problems with output       == 
