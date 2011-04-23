@@ -27,15 +27,6 @@ Options:
 	-s	Force strandedness.  That is, only include hits in A that
 		overlap B on the same strand.
 		- By default, hits are included without respect to strand.
-
-	-hist	Report a histogram of coverage for each feature in B
-		as well as a summary histogram for _all_ features in B.
-
-		Output (tab delimited) after each feature in B:
-		  1) depth
-		  2) # bases at depth
-		  3) size of B
-		  4) % of B at depth
 ...
 }}}
 
