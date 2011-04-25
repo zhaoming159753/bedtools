@@ -8,6 +8,11 @@ Below are common questions that are commonly asked by new BEDTools users. We hav
 
 <br>
 
+
+== Problems compiling BEDTools ==
+  === What are all of these zlib errors? ===
+
+
 == Problems with running BEDTools commands ==
   === How do I see the help for a given command? ===
   All BEDTools commands have a "-h" option.  Additionally, some tools will provide the help menu if you just type the command line followed by enter.
