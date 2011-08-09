@@ -11,7 +11,11 @@ Below are common questions that are commonly asked by new BEDTools users. We hav
 
 == Problems compiling BEDTools ==
   === What are all of these zlib errors? ===
-
+  BEDTools supports BAM and gzipped BED/GFF/VCF files through use of the zlib libraries. Some versions of Ubuntu and other UNIX flavors come without the zlib libraries installed.  If you run into this, please try first installing the zlib libraries.  For example, on Ubuntu, this would be:
+  {{{
+sudo apt-get install zlib
+sudo apt-get install zlib-devel
+   }}}
 
 == Problems with running BEDTools commands ==
   === How do I see the help for a given command? ===
